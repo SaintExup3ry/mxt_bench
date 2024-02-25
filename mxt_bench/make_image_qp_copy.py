@@ -43,7 +43,7 @@ def createFolder(directory):
 
 
 FLAGS = flags.FLAGS
-flags.DEFINE_string('env', 'ant_reach_2', 'Name of environment to collect data.')
+flags.DEFINE_string('env', 'ant_reach_4', 'Name of environment to collect data.')
 flags.DEFINE_string('obs_config', 'amorpheus', 'Name of observation config to train.')
 # flags.DEFINE_integer('total_env_steps', 97850,  # 1957 steps * 2 device * 25 parallel envs.
 #                      'Number of env steps to run training for.')
@@ -86,8 +86,8 @@ def main(unused_argv):
   env_fn = composer.create_fn(env_name=FLAGS.env, observer=observer, observer2=observer)
   env = env_fn()
   createFolder(f"/data1/bestgenius10/DATA/{FLAGS.env}")
-  for seed_idx in range(100):
-    saved_qp_0 = f"/data1/bestgenius10/mxt_bench/data/{FLAGS.env}_qp_{seed_idx}.pkl"
+  for seed_idx in range(18):
+    saved_qp_0 = f"/data2/bestgenius10/mxt_bench/data/{FLAGS.env}_qp_{seed_idx}.pkl"
     with open(saved_qp_0, 'rb') as f:
         saved_qp_0 = pickle.load(f)
     local_state_size = env.observation_size // env.num_node

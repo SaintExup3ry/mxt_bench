@@ -68,6 +68,7 @@ def collect_data(
     observation_size2,
     num_limb,
     action_size,
+    seed,
     data_name: str,
     params_path: str,
     num_timesteps: int,
@@ -75,7 +76,6 @@ def collect_data(
     action_repeat: int = 1,
     num_envs: int = 1,
     max_devices_per_host: Optional[int] = None,
-    seed: int = 0,
     normalize_observations=True,
     local_state_size: int = 19,
     output_dir: Optional[str] = None,
@@ -314,7 +314,6 @@ def main(unused_argv):
       'num_timesteps': FLAGS.total_env_steps,
       'max_devices_per_host': FLAGS.max_devices_per_host,
       'params_path': FLAGS.params_path,
-      'seed': FLAGS.seed + seed_idx,
       'is_claw': is_claw}
 
 
@@ -330,6 +329,7 @@ def main(unused_argv):
                  parametric_action_distribution=parametric_action_distribution, 
                  policy_model=policy_model, 
                  policy_params=policy_params, 
+                 seed=seed_idx,
                  normalizer_params=normalizer_params,
                  **train_job_params)
 
